@@ -1,4 +1,4 @@
-# [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate) [![Build Status](https://api.travis-ci.org/ngbp/ngbp.png?branch=v0.3.2-release)](https://travis-ci.org/ngbp/ngbp)
+# [ngBoilerplate](https://github.com/WeWriteCode/ngbp)
 
 An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
 
@@ -9,15 +9,14 @@ An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
 Install Node.js and then:
 
 ```sh
-$ git clone git://github.com/joshdmiller/ng-boilerplate
-$ cd ng-boilerplate
+$ git clone git://github.com/WeWriteCode/ngbp.git
+$ cd ngbp
 $ sudo npm -g install grunt-cli karma bower
 $ npm install
-$ bower install
 $ grunt watch
 ```
 
-Finally, open `file:///path/to/ng-boilerplate/build/index.html` in your browser.
+Finally, open `file:///path/to/ngbp/build/index.html` in your browser.
 
 Happy hacking!
 
@@ -171,6 +170,8 @@ and Angular UI, which are listed in `bower.js`. To install them into the
 $ bower install
 ```
 
+Note: `bower install` is chained to `npm install` to you typically don't need to run it manually in this project.
+
 In the future, should you want to add a new Bower package to your app, run the
 `install` command:
 
@@ -181,7 +182,7 @@ $ bower install packagename --save-dev
 The `--save-dev` flag tells Bower to add the package at its current version to
 our project's `bower.js` file so should another developer download our
 application (or we download it from a different computer), we can simply run the
-`bower install` command as above and all our dependencies will be installed for
+`bower install` (or `npm install` which triggers `bower install`) command as above and all our dependencies will be installed for
 us. Neat!
 
 Technically, `ngBoilerplate` is now ready to go.
@@ -363,8 +364,7 @@ Naturally, I am open to all manner of ideas and suggestions. See the
 
 ### To Do
 
-See the [issues list](http://github.com/joshdmiller/ng-boilerplate/issues). And
-feel free to submit your own!
+See the [issues list](http://github.com/WeWriteCode/ngbp/issues). And feel free to submit your own!
 
 ### Contributing
 
