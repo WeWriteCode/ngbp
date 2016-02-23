@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
+  "author": "We Write Code",
   "name": "ngbp",
   "version": "0.3.2",
-  "homepage": "https://github.com/ngbp/ngbp",
+  "homepage": "https://github.com/WeWriteCode/ngbp",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/ngbp/ngbp/master/LICENSE"
+    "url": "https://raw.github.com/WeWriteCode/ngbp/master/LICENSE"
   },
-  "bugs": "https://github.com/ngbp/ngbp/issues",
+  "bugs": "https://github.com/WeWriteCode/ngbp/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ngbp/ngbp.git"
+    "url": "git@github.com:WeWriteCode/ngbp.git"
   },
   "scripts": {
     "install": "npm prune && npm update",
