@@ -261,12 +261,6 @@ changes:
 * `delta:jssrc` - When any JavaScript file within `src/` that does not end in
   `.spec.js` changes, all JavaScript sources are linted, all unit tests are run,
   and the all source files are re-copied to `build/src`.
-* `delta:coffeesrc` - When any `*.coffee` file in `src/` that doesn't match
-  `*.spec.coffee` changes, the Coffee scripts are compiled independently into
-  `build/src` in a structure mirroring where they were in `src/` so it's easy to
-  locate problems. For example, the file
-  `src/common/titleService/titleService.coffee` is compiled to
-  `build/src/common/titleService/titleService.js`.
 * `delta:tpls` - When any `*.tpl.html` file within `src/` changes, all templates
   are put into strings in a JavaScript file (technically two, one for
   `src/common/` and another for `src/app/`) that will add the template to
@@ -277,8 +271,6 @@ changes:
   `build/template-common.js`.
 * `delta:jsunit` - When any `*.spec.js` file in `src/` changes, the test files
   are linted and the unit tests are executed.
-* `delta:coffeeunit` - When any `*.spec.coffee` file in `src/` changes, the test
-  files are linted, compiled their tests executed.
 
 As covered in the previous section, `grunt watch` will execute a full build
 up-front and then run any of the aforementioned `delta:*` tasks as needed to
