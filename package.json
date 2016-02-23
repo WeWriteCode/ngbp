@@ -3,10 +3,7 @@
   "name": "ngbp",
   "version": "0.3.2",
   "homepage": "https://github.com/WeWriteCode/ngbp",
-  "licenses": {
-    "type": "MIT",
-    "url": "https://raw.github.com/WeWriteCode/ngbp/master/LICENSE"
-  },
+  "license": "MIT",
   "bugs": "https://github.com/WeWriteCode/ngbp/issues",
   "repository": {
     "type": "git",
