@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git@github.com:ngbp/ngbp.git"
   },
+  "scripts": {
+    "install": "npm prune && npm update",
+    "postinstall": "bower prune && bower update"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
