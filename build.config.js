@@ -27,7 +27,9 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    less: 'src/less/main.less',
+
+    entry_point: 'src/app/index.js'
   },
 
   /**
@@ -69,5 +71,5 @@ module.exports = {
     ],
     assets: [
     ]
-  },
+  }
 };

@@ -5,6 +5,7 @@ module.exports = function ( grunt ) {
    * in `package.json` when you do `npm install` in this directory.
    */
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -116,16 +117,6 @@ module.exports = function ( grunt ) {
             flatten: true
           }
        ]   
-      },
-      build_appjs: {
-        files: [
-          {
-            src: [ '<%= app_files.js %>' ],
-            dest: '<%= build_dir %>/',
-            cwd: '.',
-            expand: true
-          }
-        ]
       },
       build_vendorjs: {
         files: [
@@ -254,12 +245,7 @@ module.exports = function ( grunt ) {
     },
 
     /**
-     * `jshint` defines the rules of our linter as well as which files we
-     * should check. This file, all javascript sources, and all our unit tests
-     * are linted based on the policies listed in `options`. But we can also
-     * specify exclusionary patterns by prefixing them with an exclamation
-     * point (!); this is useful when code comes from a third party but is
-     * nonetheless inside `src/`.
+     * jshint rules are in .jshintrc
      */
     jshint: {
       src: [
@@ -386,7 +372,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'jasmine', 'copy:build_appjs' ]
+        tasks: [ 'jshint:src', 'jasmine', 'browserify' ]
       },
 
       /**
@@ -449,6 +435,16 @@ module.exports = function ( grunt ) {
       jasmine: {
         command: './node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json'
       }
+    },
+
+    /**
+     * Browserify config
+     */
+    browserify: {
+      js: {
+        src: '<%= app_files.entry_point %>',
+        dest: '<%= build_dir %>/src/app/app.js'
+      }
     }
   };
 
@@ -475,7 +471,7 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build', 'jasmine'
+    'browserify', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build', 'jasmine'
   ]);
 
   /**

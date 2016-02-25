@@ -4,7 +4,7 @@ var angular = require('angular'),
   appConstants = require('../constants'),
   app = require('./app');
 
-angular.module( appConstants.appName, [
+angular.module(appConstants.app.name, [
     'templates-app',
     'templates-common',
     appConstants.controllers.home.module,
@@ -14,7 +14,7 @@ angular.module( appConstants.appName, [
 
   .config(app.config)
   .run(app.run)
-  .controller(appConstants.app.controller.name, app);
+  .controller(appConstants.app.controller.name, app.controller);
 
 require('./about');
 require('./home');
