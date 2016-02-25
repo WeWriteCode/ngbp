@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Home', function() {
-  var home = require('./home');
+describe('About', function() {
+  var about = require('./about');
 
   describe('Configuration', function () {
     it('should exist', function () {
-      expect(home.config).toBeTruthy();
+      expect(about.config).toBeTruthy();
     });
   });
 
   describe('Controller', function () {
     it('should exist', function () {
-      expect(home.controller).toBeTruthy();
+      expect(about.controller).toBeTruthy();
     });
   });
 

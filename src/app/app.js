@@ -1,25 +1,20 @@
-angular.module( 'ngBoilerplate', [
-  'templates-app',
-  'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
-  'ui.router'
-])
+'use strict';
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
-})
+var constants = require('../constants');
 
-.run( function run () {
-})
+module.exports = {
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate' ;
-    }
-  });
-})
+  config: function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise(constants.controllers.home.route);
+  },
 
-;
+  controller: function ($scope, $location) {
+    $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      if (toState && toState.data && toState.data.pageTitle) {
+        $scope.pageTitle = toState.data.pageTitle + ' | ' + constants.app.name ;
+      }
+    });
+  },
 
+  run: function () {}
+};

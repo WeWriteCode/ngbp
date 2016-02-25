@@ -1,17 +1,23 @@
-describe( 'AppCtrl', function() {
-  describe( 'isCurrentUrl', function() {
-    var AppCtrl, $location, $scope;
+'use strict';
 
-    beforeEach( module( 'ngBoilerplate' ) );
+describe('App', function () {
+  var app = require('./app');
 
-    beforeEach( inject( function( $controller, _$location_, $rootScope ) {
-      $location = _$location_;
-      $scope = $rootScope.$new();
-      AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope });
-    }));
+  describe('Configuration', function () {
+    it('should exist', function () {
+      expect(app.config).toBeTruthy();
+    });
+  });
 
-    it( 'should pass a dummy test', inject( function() {
-      expect( AppCtrl ).toBeTruthy();
-    }));
+  describe('Controller', function () {
+    it('should exist', function () {
+      expect(app.controller).toBeTruthy();
+    });
+  });
+
+  describe('Runner', function () {
+    it('should exist', function () {
+      expect(app.run).toBeTruthy();
+    });
   });
 });
