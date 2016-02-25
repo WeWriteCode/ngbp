@@ -1,14 +1,14 @@
 'use strict';
 
 var angular = require('angular'),
-  constants = require('../../constants'),
+  appConstants = require('../../constants'),
   about = require('./about');
 
-angular.module(constants.controllers.about.module, [
-    constants.router.module,
+angular.module(appConstants.controllers.about.module, [
+    appConstants.router.module,
     'placeholders',
     'ui.bootstrap'
   ])
 
   .config(about.config)
-  .controller(constants.controllers.about.name, about.controller);
+  .controller(appConstants.controllers.about.name, about.controller);

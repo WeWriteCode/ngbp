@@ -1,19 +1,21 @@
 'use strict';
 
+var appConstants = require('../../constants');
+
 module.exports = {
 
   config: function config($stateProvider) {
-    $stateProvider.state(constants.controllers.home.baseName, {
-      url: constants.controllers.home.route,
+    $stateProvider.state(appConstants.controllers.home.baseName, {
+      url: appConstants.controllers.home.route,
       views: {
         "main": {
-          controller: constants.controllers.home.name,
-          templateUrl: constants.controllers.home.template
+          controller: appConstants.controllers.home.name,
+          templateUrl: appConstants.controllers.home.template
         }
       },
       data:{ pageTitle: 'Home' }
     });
   },
 
-  controller: function HomeController($scope) {}
+  controller: function HomeController() {}
 };

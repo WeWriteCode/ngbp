@@ -11,8 +11,7 @@
   },
   "scripts": {
     "install": "npm prune && npm update",
-    "postinstall": "bower prune && bower update",
-    "test": "./node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json"
+    "postinstall": "bower prune && bower update"
   },
   "dependencies": {},
   "devDependencies": {
@@ -23,19 +22,14 @@
     "grunt-contrib-clean": "^0.4.1",
     "grunt-contrib-concat": "^0.3.0",
     "grunt-contrib-copy": "^0.4.1",
-    "grunt-contrib-jshint": "^0.4.3",
+    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-uglify": "^0.2.7",
     "grunt-contrib-watch": "^0.4.4",
     "grunt-conventional-changelog": "^0.1.2",
     "grunt-html2js": "^0.1.9",
-    "grunt-karma": "^0.8.2",
     "grunt-ng-annotate": "^0.8.0",
-    "jasmine": "^2.4.1",
-    "karma": "^0.12.9",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-jasmine": "^0.1.5",
-    "karma-safari-launcher": "^0.1.1"
+    "grunt-shell": "^1.1.2",
+    "jasmine": "^2.4.1"
   }
 }

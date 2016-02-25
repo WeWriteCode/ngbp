@@ -1,16 +1,16 @@
 'use strict';
 
-var constants = require('../../constants');
+var appConstants = require('../../constants');
 
 module.exports = {
 
   config: function ($stateProvider) {
-    $stateProvider.state(constants.controllers.about.baseName, {
-      url: constants.controllers.about.route,
+    $stateProvider.state(appConstants.controllers.about.baseName, {
+      url: appConstants.controllers.about.route,
       views: {
         "main": {
-          controller: constants.controllers.about.name,
-          templateUrl: constants.controllers.about.template
+          controller: appConstants.controllers.about.name,
+          templateUrl: appConstants.controllers.about.template
         }
       },
       data:{ pageTitle: 'What is It?' }

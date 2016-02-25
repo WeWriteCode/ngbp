@@ -1,13 +1,12 @@
 'use strict';
 
 var angular = require('angular'),
-  constants = require('../../constants'),
+  appConstants = require('../../constants'),
   home = require('./home');
 
-angular.module(constants.controllers.home.module, [
-    constants.router.module,
-    'plusOne'
+angular.module(appConstants.controllers.home.module, [
+    appConstants.router.module
   ])
 
   .config(home.config)
-  .controller(constants.controllers.home.name, home.controller);
+  .controller(appConstants.controllers.home.name, home.controller);

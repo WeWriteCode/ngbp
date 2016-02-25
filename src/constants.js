@@ -14,16 +14,6 @@ function route(name) {
   return '/' + name;
 }
 
-function addController(controllers, name) {
-  controllers[name] = {
-    baseName: name,
-    module: appDot(name),
-    name: controllerName(name),
-    route: route(name),
-    template: name + '/' + name + '.tpl.html'
-  };
-}
-
 var constants = {
   app: {
     controller: {
@@ -33,12 +23,32 @@ var constants = {
     name: appName
   },
   controllers: {},
+  directives: {},
   router: {
     module: 'ui.router'
   }
 };
 
-addController(constants.controllers, 'about');
-addController(constants.controllers, 'home');
+function addController(name) {
+  constants.controllers[name] = {
+    baseName: name,
+    module: appDot(name),
+    name: controllerName(name),
+    route: route(name),
+    template: name + '/' + name + '.tpl.html'
+  };
+}
+
+function addDirective(name) {
+  constants.directives[name] = {
+    baseName: name,
+    module: name,
+    name: name
+  };
+}
+
+addController('about');
+addController('home');
+addDirective('sample');
 
 module.exports = constants;

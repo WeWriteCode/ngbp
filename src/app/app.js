@@ -1,17 +1,17 @@
 'use strict';
 
-var constants = require('../constants');
+var appConstants = require('../constants');
 
 module.exports = {
 
   config: function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise(constants.controllers.home.route);
+    $urlRouterProvider.otherwise(appConstants.controllers.home.route);
   },
 
-  controller: function ($scope, $location) {
-    $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+  controller: function ($scope) {
+    $scope.$on('$stateChangeSuccess', function(event, toState) {
       if (toState && toState.data && toState.data.pageTitle) {
-        $scope.pageTitle = toState.data.pageTitle + ' | ' + constants.app.name ;
+        $scope.pageTitle = toState.data.pageTitle + ' | ' + appConstants.app.name ;
       }
     });
   },
