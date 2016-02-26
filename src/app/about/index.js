@@ -6,7 +6,6 @@ var angular = require('angular'),
 
 angular.module(appConstants.controllers.about.module, [
     appConstants.router.module,
-    'placeholders',
     'ui.bootstrap'
   ])
 
