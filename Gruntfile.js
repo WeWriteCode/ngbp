@@ -184,8 +184,7 @@ module.exports = function ( grunt ) {
           'module.prefix', 
           '<%= build_dir %>/src/**/*.js', 
           '<%= html2js.app.dest %>', 
-          '<%= html2js.common.dest %>', 
-          'module.suffix' 
+          'module.suffix'
         ],
         dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
       }
@@ -276,19 +275,8 @@ module.exports = function ( grunt ) {
         options: {
           base: 'src/app'
         },
-        src: [ '<%= app_files.atpl %>' ],
+        src: [ '<%= app_files.templates %>' ],
         dest: '<%= build_dir %>/templates-app.js'
-      },
-
-      /**
-       * These are the templates from `src/common`.
-       */
-      common: {
-        options: {
-          base: 'src/common'
-        },
-        src: [ '<%= app_files.ctpl %>' ],
-        dest: '<%= build_dir %>/templates-common.js'
       }
     },
 
@@ -309,7 +297,6 @@ module.exports = function ( grunt ) {
         src: [
           '<%= vendor_files.js %>',
           '<%= build_dir %>/src/**/*.js',
-          '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
@@ -398,10 +385,7 @@ module.exports = function ( grunt ) {
        * When our templates change, we only rewrite the template cache.
        */
       tpls: {
-        files: [ 
-          '<%= app_files.atpl %>', 
-          '<%= app_files.ctpl %>'
-        ],
+        files: [ '<%= app_files.templates %>' ],
         tasks: [ 'html2js' ]
       },
 

@@ -6,7 +6,6 @@ var angular = require('angular'),
 
 angular.module(appConstants.app.name, [
     'templates-app',
-    'templates-common',
     appConstants.controllers.home.module,
     appConstants.controllers.about.module,
     appConstants.router.module
