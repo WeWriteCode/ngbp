@@ -2,11 +2,11 @@
 
 var angular = require('angular'),
   appConstants = require('../../constants'),
-  about = require('./about');
+  about = require('./about'),
+  router = require('angular-ui-router');
 
 angular.module(appConstants.controllers.about.module, [
-    appConstants.router.module,
-    'ui.bootstrap'
+    router
   ])
 
   .config(about.config)

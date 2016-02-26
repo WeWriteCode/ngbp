@@ -23,10 +23,7 @@ var constants = {
     name: appName
   },
   controllers: {},
-  directives: {},
-  router: {
-    module: 'ui.router'
-  }
+  directives: {}
 };
 
 function addController(name) {

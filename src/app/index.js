@@ -2,13 +2,14 @@
 
 var angular = require('angular'),
   appConstants = require('../constants'),
-  app = require('./app');
+  app = require('./app'),
+  router = require('angular-ui-router');
 
 angular.module(appConstants.app.name, [
     'templates-app',
     appConstants.controllers.home.module,
     appConstants.controllers.about.module,
-    appConstants.router.module
+    router
   ])
 
   .config(app.config)
