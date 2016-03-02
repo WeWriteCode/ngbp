@@ -16,4 +16,3 @@ describe('About', function() {
   });
 
 });
-

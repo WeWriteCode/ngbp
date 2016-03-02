@@ -1,28 +1,34 @@
 'use strict';
 
-var appConstants = require('../../constants');
+var app = require('../app'),
+  metadata = require('../../../static/angularMetadata')('about', app.moduleName);
 
 module.exports = {
 
   config: function ($stateProvider) {
-    $stateProvider.state(appConstants.controllers.about.baseName, {
-      url: appConstants.controllers.about.route,
+    'ngInject';
+    $stateProvider.state(metadata.name, {
+      url: metadata.route,
       views: {
         "main": {
-          controller: appConstants.controllers.about.name,
-          templateUrl: appConstants.controllers.about.template
+          controller: metadata.controllerName,
+          templateUrl: metadata.template
         }
       },
       data:{ pageTitle: 'What is It?' }
     });
   },
 
-  controller: function AboutCtrl($scope) {
-    // This is simple a demo for UI Boostrap.
+  controller: function ($scope) {
+    'ngInject';
     $scope.dropdownDemoItems = [
       "The first choice!",
       "And another choice for you.",
       "but wait! A third!"
     ];
-  }
+  },
+
+  controllerName: metadata.controllerName,
+  moduleName: metadata.moduleName,
+  route: metadata.route
 };

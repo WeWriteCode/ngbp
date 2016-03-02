@@ -1,3 +1,5 @@
+var app = require('./src/app/app');
+
 module.exports = function ( grunt ) {
   
   /** 
@@ -88,9 +90,16 @@ module.exports = function ( grunt ) {
       }
     },
     delta: {
+      options: {
+        livereload: true
+      },
+
       gruntfile: {
         files: 'Gruntfile.js',
-        tasks: [ 'jshint:gruntfile' ]
+        tasks: [ 'jshint:gruntfile' ],
+        options: {
+          livereload: false
+        }
       },
       jssrc: {
         files: ['<%= app_files.js %>'],
@@ -114,7 +123,10 @@ module.exports = function ( grunt ) {
       },
       jsunit: {
         files: ['<%= app_files.jsunit %>'],
-        tasks: [ 'jshint:test', 'jasmine' ]
+        tasks: [ 'jshint:test', 'jasmine' ],
+        options: {
+          livereload: false
+        }
       }
     },
     html2js: {
@@ -131,7 +143,7 @@ module.exports = function ( grunt ) {
       /**
        * During development, we don't want to have wait for compilation,
        * concatenation, minification, etc. So to avoid these steps, we simply
-       * add all script files directly to the `<head>` of `index.html`. The
+       * add all script files directly to the end of `<body>` of `index.html`. The
        * `src` property contains the list of included files.
        */
       build: {
@@ -140,7 +152,8 @@ module.exports = function ( grunt ) {
           '<%= build_dir %>/src/**/*.js',
           '<%= html2js.app.dest %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
-        ]
+        ],
+        livereload: true
       },
 
       /**
@@ -153,7 +166,8 @@ module.exports = function ( grunt ) {
         src: [
           '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
-        ]
+        ],
+        livereload: false
       }
     },
 
@@ -201,7 +215,7 @@ module.exports = function ( grunt ) {
       ' * <%= pkg.homepage %>\n' +
       ' *\n' +
       ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-      ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
+      ' * Licensed <%= pkg.license %>\n' +
       ' */\n'
     },
     ngAnnotate: {
@@ -230,10 +244,10 @@ module.exports = function ( grunt ) {
     uglify: {
       compile: {
         options: {
-          banner: '<%= meta.banner %>'
+          banner: "<%= meta.banner %>"
         },
         files: {
-          '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
+          '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': '<%= browserify.js.dest %>'
         }
       }
     }
@@ -261,7 +275,8 @@ module.exports = function ( grunt ) {
    */
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'jasmine', 'less:build',
-    'copy:build_app_assets', 'copy:fonts', 'browserify', 'index:build'
+    'copy:build_app_assets', 'copy:fonts', 'browserify', 'ngAnnotate',
+    'index:build'
   ]);
 
   /**
@@ -269,7 +284,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngAnnotate', 'uglify', 'index:compile'
+    'less:compile', 'copy:compile_assets', 'uglify', 'index:compile'
   ]);
 
   /**
@@ -297,6 +312,7 @@ module.exports = function ( grunt ) {
    * compilation.
    */
   grunt.registerMultiTask('index', 'Process index.html template', function () {
+    var livereload = this.data.livereload;
     var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
@@ -305,10 +321,13 @@ module.exports = function ( grunt ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+    grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
       process: function (contents) {
         return grunt.template.process(contents, {
           data: {
+            appName: app.moduleName,
+            appControllerName: app.controllerName,
+            livereload: livereload,
             scripts: jsFiles,
             styles: cssFiles,
             version: grunt.config( 'pkg.version' )

@@ -1,20 +1,18 @@
 'use strict';
 
 var angular = require('angular'),
-  appConstants = require('../constants'),
   app = require('./app'),
-  router = require('angular-ui-router');
+  router = require('angular-ui-router'),
+  about = require('./about'),
+  home = require('./home');
 
-angular.module(appConstants.app.name, [
+angular.module(app.moduleName, [
     'templates-app',
-    appConstants.controllers.home.module,
-    appConstants.controllers.about.module,
+    home,
+    about,
     router
   ])
 
   .config(app.config)
   .run(app.run)
-  .controller(appConstants.app.controller.name, app.controller);
-
-require('./about');
-require('./home');
+  .controller(app.controllerName, app.controller);

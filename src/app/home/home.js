@@ -1,21 +1,26 @@
 'use strict';
 
-var appConstants = require('../../constants');
+var app = require('../app'),
+  metadata = require('../../../static/angularMetadata')('home', app.moduleName);
 
 module.exports = {
 
   config: function config($stateProvider) {
-    $stateProvider.state(appConstants.controllers.home.baseName, {
-      url: appConstants.controllers.home.route,
+    'ngInject';
+    $stateProvider.state(metadata.name, {
+      url: metadata.route,
       views: {
         "main": {
-          controller: appConstants.controllers.home.name,
-          templateUrl: appConstants.controllers.home.template
+          controller: metadata.controllerName,
+          templateUrl: metadata.template
         }
       },
       data:{ pageTitle: 'Home' }
     });
   },
 
-  controller: function HomeController() {}
+  controller: function HomeController() {},
+  controllerName: metadata.controllerName,
+  moduleName: metadata.moduleName,
+  route: metadata.route
 };

@@ -1,20 +1,26 @@
 'use strict';
 
-var appConstants = require('../constants');
+var home = require('./home/home'),
+  metadata = require('../../static/angularMetadata')('app');
 
 module.exports = {
 
   config: function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise(appConstants.controllers.home.route);
+    'ngInject';
+    $urlRouterProvider.otherwise(home.route);
   },
 
   controller: function ($scope) {
-    $scope.$on('$stateChangeSuccess', function(event, toState) {
+    'ngInject';
+    $scope.$on('$stateChangeSuccess', function (event, toState) {
       if (toState && toState.data && toState.data.pageTitle) {
-        $scope.pageTitle = toState.data.pageTitle + ' | ' + appConstants.app.name ;
+        $scope.pageTitle = toState.data.pageTitle + ' | ' + metadata.name ;
       }
     });
   },
+
+  controllerName: metadata.controllerName,
+  moduleName: metadata.moduleName,
 
   run: function () {}
 };
