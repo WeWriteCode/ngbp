@@ -9,9 +9,6 @@
     "type": "git",
     "url": "git@github.com:WeWriteCode/ngbp.git"
   },
-  "scripts": {
-    "postinstall": "bower install"
-  },
   "dependencies": {},
   "devDependencies": {
     "angular": "1.5.0",
