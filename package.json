@@ -10,8 +10,7 @@
     "url": "git@github.com:WeWriteCode/ngbp.git"
   },
   "scripts": {
-    "install": "npm prune && npm update",
-    "postinstall": "bower prune && bower update"
+    "postinstall": "bower install"
   },
   "dependencies": {},
   "devDependencies": {
